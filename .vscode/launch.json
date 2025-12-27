@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RestSpringAuthApplication<rest_spring_auth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.rest_spring_auth.RestSpringAuthApplication",
+            "projectName": "rest_spring_auth",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
