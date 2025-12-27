@@ -7,6 +7,7 @@ import com.example.rest_spring_auth.repository.ProdutoRepository;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.rest_spring_auth.exceptions.RecursoNaoEncontradoException;
 import com.example.rest_spring_auth.model.Produto;
 
 
@@ -24,8 +25,9 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Optional<Produto> buscarPorId(Long id){
-        return produtoRepository.findById(id);
+    public Produto buscarPorId(Long id){
+        return produtoRepository.findById(id)
+        .orElseThrow(() -> new RecursoNaoEncontradoException("Produto com ID " + id + " não encontrado"));
     }
 
     public Produto salvaProduto (Produto produto){
@@ -33,6 +35,9 @@ public class ProdutoService {
     }
 
     public void deletarProduto (Long id){
+        if(!produtoRepository.existsById(id)){
+            throw new RecursoNaoEncontradoException("Produto com ID " + id + " não encontrado");
+        }
         produtoRepository.deleteById(id);
     }
 

@@ -2,6 +2,7 @@ package com.example.rest_spring_auth.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.rest_spring_auth.exceptions.RecursoNaoEncontradoException;
 import com.example.rest_spring_auth.model.Produto;
 import com.example.rest_spring_auth.service.ProdutoService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,9 +34,9 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
-        return produtoService.buscarPorId(id)
-        .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> buscarProduto(@PathVariable Long id) {
+            Produto produto = produtoService.buscarPorId(id);
+            return ResponseEntity.ok(produto);
     }
 
     @PostMapping
