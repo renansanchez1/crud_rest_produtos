@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.example.rest_spring_auth.repository.ProdutoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.rest_spring_auth.exceptions.RecursoNaoEncontradoException;
 import com.example.rest_spring_auth.model.Produto;
